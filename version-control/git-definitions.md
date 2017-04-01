@@ -3,7 +3,7 @@
 **Instructions: ** Define each of the following Git concepts.
 
 * What is version control?  Why is it useful?
-		Version control records changes to a file so that you can come back to it specific, earlier, versions later. 
+		Version control records changes to a file so that you can come back to it specific, earlier, versions later. Which is usful if you make a mistake and need to go back to an earlier version.
 * What is a branch and why would you use one?
 		A branch isolates a file for any updates, adding code or files, made by a user from the master that can then be reintroduced to the master branch at a later point, updating the old with the new.  This is useful because if any mistakes are made in the branch it won’t affect the master until they are merged.
 * What is a commit? What makes a good commit message?
