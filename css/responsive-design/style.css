@@ -8,10 +8,21 @@ cite {
   display: block;
   margin-top: 10px;
 }
-
+#external-links{
+  width: 30%;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 2em;
+}
 #external-links ul {
   list-style-type: none;
   padding-left: 0px;
+
+}
+main{
+  width: 60%;
+  display: inline-block;
+  vertical-align: top;
 }
 
 /* you're welcome to edit the
@@ -30,3 +41,7 @@ figcaption {
   font-style: italic;
   text-align: right;
 }
+body{
+  max-width: 960px;
+}
+
