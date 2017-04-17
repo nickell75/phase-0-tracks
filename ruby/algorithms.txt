@@ -1,0 +1,25 @@
+Enter elevator
+If going to floor 1
+	-press floor 1
+	else if going to floor 2
+		-press floor 2
+	else going to floor 3
+		-press floor 3
+	etc.
+When elevator stops at correct floor
+	-exit elevator
+
+Brushing teeth Algorithm
+
+Go to bathroom sink
+Get tooth brush
+Get tooth paste
+Apply tooth paste to tooth brush
+	-Return tooth paste
+	-Wet tooth brush and paste with water
+Brush teeth for approx. 2min
+When done
+	-Rinse tooth brush
+	-Rinse mouth
+	-Put tooth brush back
+	
