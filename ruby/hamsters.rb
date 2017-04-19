@@ -24,8 +24,6 @@ puts"Fur Color: #{fur_color}"
 puts"Good Candidate: #{adoption}"
 puts"Estmated Age: #{est_age}"
 
-numbers = Array.new(10) { |i|  }
-numbers.each do [number]
-	puts number
+
 end
 
