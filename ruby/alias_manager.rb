@@ -6,9 +6,19 @@
 
 =end
 
-real_name = "James Bond".split(' ')
-	
-# Swap_first_last
+# Find next vowel
+def next_vowel(letter)
+  vowels = ("aeiou")
+    i = vowels.index(letter)
+      vowels[(i + 1) % vowels.length]
+  end
+# Find next consonant
+def next_consonant(letter)
+  consonants = ("bcdfghjklmnpqrstuvwxy") 
+    i = consonants.index(letter)
+      consonants[(i + 1) % consonants.length]
+end
+# Swap first name and last name
 def swap_first_last(real_name)
   real_name = real_name.split(' ')
   real_name.class
@@ -18,24 +28,22 @@ def swap_first_last(real_name)
   last_first = real_name.join(' ')
   puts last_first
   return last_first
- 
+end
+    
+def main_method(spy_name)
+  spy_name.delete!" "
+  spy_name.downcase!
+  spy_name = spy_name.split('')
+  spy_name.class
+  
+  spy_name.map! do |value|
+    if value =~ /[aeiou]/
+      next_vowel(value)
+    else
+      next_consonant(value)
+    end
+  end
+  spy_name.join('')
 end
 
-def test(some_thing)
-  puts some_thing.reverse!
-  return some_thing
-end
-
-def test2(some_else)
-  some_else = some_else.upcase
-  puts some_else
-end
-
-
-
-
-
-
-
-
-test2(test(swap_first_last("James Bond")) )
+p main_method(swap_first_last("James Bond"))
