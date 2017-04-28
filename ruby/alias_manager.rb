@@ -25,12 +25,12 @@ def swap_first_last(real_name)
   
   real_name.reverse!
  
-  last_first = real_name.join(' ')
-  puts last_first
+  last_first = real_name.join(' ')  
   return last_first
 end
     
 def main_method(spy_name)
+  
   spy_name.delete!" "
   spy_name.downcase!
   spy_name = spy_name.split('')
@@ -43,7 +43,12 @@ def main_method(spy_name)
       next_consonant(value)
     end
   end
-  spy_name.join('')
+  puts spy_name.join('') 
 end
 
-p main_method(swap_first_last("James Bond"))
+input = ""
+while input != "quit"
+	puts "Please enter your real name to convert(Enter "quit" to quit): "
+	  input = gets.chomp	  
+	  main_method(swap_first_last(input))
+end
