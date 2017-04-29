@@ -7,48 +7,59 @@
 =end
 
 # Find next vowel
-def next_vowel(letter)
-  vowels = ("aeiou")
-    i = vowels.index(letter)
-      vowels[(i + 1) % vowels.length]
-  end
-# Find next consonant
-def next_consonant(letter)
-  consonants = ("bcdfghjklmnpqrstuvwxy") 
-    i = consonants.index(letter)
-      consonants[(i + 1) % consonants.length]
-end
-# Swap first name and last name
-def swap_first_last(real_name)
-  real_name = real_name.split(' ')
-  real_name.class
-  
-  real_name.reverse!
- 
-  last_first = real_name.join(' ')  
-  return last_first
-end
-    
-def main_method(spy_name)
-  
-  spy_name.delete!" "
-  spy_name.downcase!
-  spy_name = spy_name.split('')
-  spy_name.class
-  
-  spy_name.map! do |value|
-    if value =~ /[aeiou]/
-      next_vowel(value)
-    else
-      next_consonant(value)
+def next_vowel(letters)
+  vowels = ['a', 'e', 'i', 'o', 'u']
+    letters = letters.downcase.split('')
+    next_letters = letters.map do |str|
+    	if vowels.include?(str)
+    		vowels.rotate(1)[vowels.index(str)]
+    	else
+    		str
+    	end
     end
-  end
-  puts spy_name.join('') 
+    next_letters.join('')
 end
 
-input = ""
-while input != "quit"
-	puts "Please enter your real name to convert(Enter "quit" to quit): "
-	  input = gets.chomp	  
-	  main_method(swap_first_last(input))
+# Find next consonant
+def next_consonant(letters)
+  consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'] 
+    letters = letters.downcase.split('')
+    next_letters = letters.map do |str|
+    	if consonants.include?(str)
+    	  	consonants.rotate(1)[consonants.index(str)]
+    	else
+    		str
+    	end
+	end
+	next_letters.join('').capitalize!
+end
+
+# Swap first name and last name
+def swap_first_last(real_name)
+  real_name.split.reverse.join(' ')
+end
+    
+# Driver Code
+valid_input = false
+agents = {}
+real_name = ""
+secret_name = ""
+
+until valid_input
+  puts "Please enter your real name to convert(Enter quit to quit): "
+  real_name = gets.chomp.downcase
+    if real_name == "quit"
+       puts "Thank You!"
+       valid_input = true
+     else
+      secret_name = swap_first_last(next_vowel(next_consonant(real_name)))
+       puts "Your secret name is #{secret_name} "
+    # Re-capitalize first and last name for both real name and secret name
+       agents[real_name.split.map(&:capitalize).join(' ')] = secret_name.split.map(&:capitalize).join(' ')
+      end
+    end
+
+# Output list of agents and aliases
+agents.each do |real, fake|
+  puts"#{real} is also known #{fake}"
 end
