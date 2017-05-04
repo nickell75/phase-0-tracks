@@ -53,3 +53,16 @@ polly = Bird.new
 polly.tweet(4)
 
 polly.repeat("Polly wanna cracker!")
+
+flock = []
+
+50.times do 
+  flock << Bird.new 
+end
+
+p flock 
+
+flock.each do |bird_instance| 
+  bird_instance.tweet(2)
+  bird_instance.repeat("Hey, you!")
+end 
