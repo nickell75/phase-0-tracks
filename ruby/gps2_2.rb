@@ -10,8 +10,8 @@
 def create_list(items)
 	items_array = items.split(' ')
 	grocery_hash = {}
-	items_array.each do |item|
-		item.capitalize!
+	items_array.each do |item|		
+		# Refactor Provided by John Gill
 		add_item(grocery_hash, item)
 		#grocery_hash[item] = 1
 	end
@@ -60,7 +60,7 @@ def print_list(list)
   puts "_-" *25 + "\n\n"
   puts "Here is your Grocery List: \n\n"
   list.each do |item, quantity|
-    puts "\t#{item}  - #{quantity}"
+    puts "\tItem: #{item}     \tAmount:  #{quantity}"
   end
   puts "_-" *25
 end
@@ -78,6 +78,6 @@ add_item(my_grocery_list, "Ice Cream", 4)
 # Remove Items
 remove_item(my_grocery_list, "Lemonade") 
 # Update Items
-update_quantity(my_grocery_list, "Ice Cream", 4)
+update_quantity(my_grocery_list, "Ice Cream", 1)
 # Print List
 print_list(my_grocery_list)
