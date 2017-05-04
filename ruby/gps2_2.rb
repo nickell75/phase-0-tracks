@@ -11,6 +11,7 @@ def create_list(items)
 	items_array = items.split(' ')
 	grocery_hash = {}
 	items_array.each do |item|
+		item.capitalize!
 		add_item(grocery_hash, item)
 		#grocery_hash[item] = 1
 	end
@@ -56,22 +57,27 @@ end
 # output: list
 
 def print_list(list)
+  puts "_-" *25 + "\n\n"
+  puts "Here is your Grocery List: \n\n"
   list.each do |item, quantity|
-    puts "#{item}  - #{quantity}"
+    puts "\t#{item}  - #{quantity}"
   end
+  puts "_-" *25
 end
 
 #       DRIVER CODE--------------------------------------------------------
 
-grociers = "carrots apples cereal pizza"
+groceries = "carrots apples cereal pizza"
 
-my_grociery_list = create_list(grociers)
-
-#p my_grociery_list
-remove_item(my_grociery_list, "carrots") 
-
-update_quantity(my_grociery_list, "bread", 2)
-
-add_item(my_grociery_list, "milk", 5)
-#p my_grociery_list
-print_list(my_grociery_list)
+my_grocery_list = create_list(groceries)
+#  Add Items
+add_item(my_grocery_list, "Lemonade", 2)
+add_item(my_grocery_list, "Tomatoes", 3)
+add_item(my_grocery_list, "Onions", 1)
+add_item(my_grocery_list, "Ice Cream", 4)
+# Remove Items
+remove_item(my_grocery_list, "Lemonade") 
+# Update Items
+update_quantity(my_grocery_list, "Ice Cream", 4)
+# Print List
+print_list(my_grocery_list)
