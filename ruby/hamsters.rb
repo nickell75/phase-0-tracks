@@ -24,5 +24,3 @@ puts"Fur Color: #{fur_color}"
 puts"Good Candidate: #{adoption}"
 puts"Estmated Age: #{est_age}"
 
-end
-
