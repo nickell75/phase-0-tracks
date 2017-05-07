@@ -24,11 +24,10 @@ then use driver code to bridge the gap between human and Ruby object.
 #_____________________________Computer Logic_________________________________________
 
 class Word_Game
-  attr_reader :already_used
-  attr_accessor :word, :guess, :guess_count, :is_game_over, :blank
+  attr_reader :word_array
+  attr_accessor :word, :guess, :guess_count, :guesses, :already_used
 
   def initialize(word)
-    puts "Lets get started!"
     @word = word
     @guess = guess
     @is_game_over = false
@@ -36,40 +35,48 @@ class Word_Game
     @word_array = []
     @guess_array = []
     @already_used = []
-    @blank
+    @blank = []
+    @word_index = []
+    @guesses
   end
-
+  
   def check_word
-    if @word != @guess
+    @blank = ("-" * @word.length).split('')
+    if @word != @guess && @guesses !=  1
+    # Input from User
+      @guesses = @word.length - @guess_count
+      puts "You have #{@guesses} guesses remaining, \nGuess the word:"
+      @guess = gets.chomp.downcase 
+      
+
       puts "Not the correct word, Try Again: "
-      #system "clear"
-        word_index = ["-"]
         @word_array = @word.split('')
         @guess_array = @guess.split('')
+
     # Compare each letter
         @guess_array.each do |letter| 
             if @word_array.include?(letter)
+              @word_index = @blank
               match_letter = letter
               match_index = @word_array.index(letter)
-              word_index[match_index] = letter
-            end
-          end
-      # Print correct letters
-          @blank = ("-" * @word_array.length).split('')
-          @blank = word_index.join('')
-          p "Hint: " + @blank
-            @is_game_over
-      else
-          @is_game_over = true
-      end
+              @word_index[match_index] = letter
+            end          
+        end   
+    else
+      @is_game_over = true
     end
-   def blank
-    
+  end
+
+
+  def blank
+    @blank = @word_index.join('')
+     @blank
+     # "Hint: " + @blank            
   end
 
   def check_dubplicate
     if @already_used.include?(@guess)
-      puts "You have already tried #{guess}!"
+      puts "You have already tried #{@guess}!"
     else
       @guess_count += 1
       @already_used << @guess
@@ -77,35 +84,14 @@ class Word_Game
   end
   
   def message
-    if is_game_over != true && guesses == 0
-      puts "No more guesses left
-            GAME OVER!!"
-      game.is_game_over = true
-    elsif is_game_over == true && guesses != 0
-      puts "You got it!!  Great Job!!
-            Game Over!"
+    if @is_game_over != true && guesses == 0
+      puts "No more guesses left :(\nGAME OVER!!"
+      @is_game_over = true
+    elsif @is_game_over == true && guesses != 0
+      puts "You got it!!  Great Job!!\nGame Over!"
+      #@is_game_over = true
     end
   end
-end
 
+end
 #_____________________________DRIVER Code_________________________________________
-puts "Welcome to the Word Game"
-puts "Please enter a word to start game: "
-  word = gets.chomp
-  word.downcase!
-game = Word_Game.new(word)
-game.blank = ("_" * game.word.length).split('')
-
-while game.is_game_over != true
-  guesses = game.word.length - game.guess_count
-    if game.is_game_over != true && guesses != 0
-      guesses = game.word.length - game.guess_count
-      
-      puts "You have #{guesses} guesses remaining, \nGuess the word:"
-      game.guess = gets.chomp
-    
-      game.check_word
-      game.check_dubplicate
-  end
-end
-game.message
