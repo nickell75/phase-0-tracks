@@ -25,7 +25,7 @@ then use driver code to bridge the gap between human and Ruby object.
 
 class Word_Game
   attr_reader :word_array
-  attr_accessor :word, :guess, :guess_count, :guesses, :already_used
+  attr_accessor :word, :guess, :guess_count, :guesses, :already_used, :is_game_over
 
   def initialize(word)
     @word = word
@@ -46,8 +46,7 @@ class Word_Game
     # Input from User
       @guesses = @word.length - @guess_count
       puts "You have #{@guesses} guesses remaining, \nGuess the word:"
-      @guess = gets.chomp.downcase 
-      
+      @guess = gets.chomp.downcase       
 
       puts "Not the correct word, Try Again: "
         @word_array = @word.split('')
@@ -67,7 +66,6 @@ class Word_Game
     end
   end
 
-
   def blank
     @blank = @word_index.join('')
      @blank
@@ -84,11 +82,11 @@ class Word_Game
   end
   
   def message
-    if @is_game_over != true && guesses == 0
-      puts "No more guesses left :(\nGAME OVER!!"
+    if @is_game_over != true || @guesses == 0
+      "No more guesses left :(\nGAME OVER!!"
       @is_game_over = true
-    elsif @is_game_over == true && guesses != 0
-      puts "You got it!!  Great Job!!\nGame Over!"
+    elsif @is_game_over == true && @guesses != 0
+      "You got it!!  Great Job!!\nGame Over!"
       #@is_game_over = true
     end
   end

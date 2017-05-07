@@ -26,9 +26,14 @@ describe Word_Game do
     expect(game.blank).to eq ""
   end
   
-#  it "gives player final message - good or bad" do
-   
-#  end
+  it "gives player final message - good or bad" do
+    game.is_game_over != true || game.guesses == 0
+    expect(game.message).to eq true 
+  end
+  it "gives player final message - good or bad" do
+    game.is_game_over == true && game.guesses != 0
+    expect(game.message).to eq true 
+  end
 end
 =begin
   
