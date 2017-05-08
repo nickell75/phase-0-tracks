@@ -12,9 +12,10 @@ describe Word_Game do
     expect(game.guess).to eq "r"
   end
 
-  #it "limited guesses equal to the length of the word" do
-  #  expect(game.word.length).to eq game.guesses
-  #end
+  it "limited guesses equal to the length of the word" do
+    game.check_word
+    expect(game.word.length).to eq game.guesses
+  end
   
   it "Repeated guesses don't count against player" do
     game.already_used << "r"
