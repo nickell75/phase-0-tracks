@@ -1,4 +1,4 @@
-# Virus Predictor
+# __________________Virus Predictor________________
 
 # I worked on this challenge [by myself, with: ].
 # We spent [#] hours on this challenge.
@@ -10,20 +10,23 @@ require_relative 'state_data'
 
 class VirusPredictor
 
+# Taking all the variables
   def initialize(state_of_origin, population_density, population)
     @state = state_of_origin
     @population = population
     @population_density = population_density
   end
 
+# Passing variables to others methods
   def virus_effects
-    predicted_deaths(@population_density, @population, @state)
-    speed_of_spread(@population_density, @state)
+    predicted_deaths
+    speed_of_spread
   end
 
   private
 
-  def predicted_deaths(population_density, population, state)
+# Calculate the predicted deaths
+  def predicted_deaths
     # predicted deaths is solely based on population density
     if @population_density >= 200
       number_of_deaths = (@population * 0.4).floor
@@ -41,7 +44,8 @@ class VirusPredictor
 
   end
 
-  def speed_of_spread(population_density, state) #in months
+# Calculate speed of spread based on population density 
+  def speed_of_spread #in months
     # We are still perfecting our formula here. The speed is also affected
     # by additional factors we haven't added into this functionality.
     speed = 0.0
@@ -66,10 +70,10 @@ end
 
 #=======================================================================
 
-# DRIVER CODE
+              # DRIVER CODE
  # initialize VirusPredictor for each state
 
-
+=begin
 alabama = VirusPredictor.new("Alabama", STATE_DATA["Alabama"][:population_density], STATE_DATA["Alabama"][:population])
 alabama.virus_effects
 
@@ -81,7 +85,23 @@ california.virus_effects
 
 alaska = VirusPredictor.new("Alaska", STATE_DATA["Alaska"][:population_density], STATE_DATA["Alaska"][:population])
 alaska.virus_effects
+=end
 
-
+STATE_DATA.each_key do |state|
+    each_state = VirusPredictor.new(state,STATE_DATA[state][:population_density],STATE_DATA[state][:population])
+    each_key.virus_effects
+end
 #=======================================================================
 # Reflection Section
+=begin
+What are the differences between the two different hash syntaxes shown in the state_data file?
+
+What does require_relative do? How is it different from require?
+
+What are some ways to iterate through a hash?
+
+When refactoring virus_effects, what stood out to you about the variables, if anything?
+
+What concept did you most solidify in this challenge?
+
+=end
