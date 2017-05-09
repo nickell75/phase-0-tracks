@@ -1,10 +1,10 @@
 # __________________Virus Predictor________________
 
-# I worked on this challenge [by myself, with: ].
-# We spent [#] hours on this challenge.
+# I worked on this challenge [by myself, with: Cassandra].
+# We spent [#] hours on this challenge. - 1hr
 
 # EXPLANATION OF require_relative
-#
+# See Below
 #
 require_relative 'state_data'
 
@@ -23,10 +23,12 @@ class VirusPredictor
     speed_of_spread
   end
 
-  private
-
+  
+private
 # Calculate the predicted deaths
+
   def predicted_deaths
+=begin 
     # predicted deaths is solely based on population density
     if @population_density >= 200
       number_of_deaths = (@population * 0.4).floor
@@ -39,10 +41,20 @@ class VirusPredictor
     else
       number_of_deaths = (@population * 0.05).floor
     end
-
-    print "#{@state} will lose #{number_of_deaths} people in this outbreak"
-
   end
+=end
+    
+
+case @population_density
+  when @population_density >= 200 then number_of_deaths = (@population * 0.4).floor
+  when @population_density >= 150 then number_of_deaths = (@population * 0.3).floor
+  when @population_density >= 100 then number_of_deaths = (@population * 0.2).floor
+  when @population_density >= 50 then number_of_deaths = (@population * 0.1).floor
+  else number_of_deaths = (@population * 0.05).floor
+  end
+
+  print "#{@state} will lose #{number_of_deaths} people in this outbreak"
+end
 
 # Calculate speed of spread based on population density 
   def speed_of_spread #in months
@@ -61,9 +73,7 @@ class VirusPredictor
     else
       speed += 2.5
     end
-
     puts " and will spread across the state in #{speed} months.\n\n"
-
   end
 
 end
@@ -88,20 +98,26 @@ alaska.virus_effects
 =end
 
 STATE_DATA.each_key do |state|
-    each_state = VirusPredictor.new(state,STATE_DATA[state][:population_density],STATE_DATA[state][:population])
-    each_key.virus_effects
+    each_state = VirusPredictor.new(state, STATE_DATA[state][:population_density], STATE_DATA[state][:population])
+    each_state.virus_effects
 end
 #=======================================================================
 # Reflection Section
 =begin
 What are the differences between the two different hash syntaxes shown in the state_data file?
+Two hash syntax where the string for the key and the nested hash used symbols for the key.
 
 What does require_relative do? How is it different from require?
+Require references modules that could be used for any thing 
+Require_relative references files in the same repo, code usually seperated out for readability 
 
 What are some ways to iterate through a hash?
+Iteration can be done using .each or .each_key to reference the first key and pull data based on that key from the nested hash
 
 When refactoring virus_effects, what stood out to you about the variables, if anything?
+Didn't need to pass variables because they were instance variables 
 
 What concept did you most solidify in this challenge?
+More understanding of initialization. 
 
 =end
