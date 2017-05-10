@@ -5,7 +5,7 @@
 //var word = input;
 function reverse(word) {
 	var revWord = ""
-	for (var a = word.length -1; a < 0; a++){
+	for (var a = word.length -1; a >= 0; a--){
 		revWord += word[a]
 	}
 	
