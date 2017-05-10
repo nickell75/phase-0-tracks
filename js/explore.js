@@ -8,17 +8,18 @@ function reverse(word) {
 	for (var a = word.length -1; a >= 0; a--){
 		revWord += word[a]
 	}
-	
-  //if (word == revWord){
-  //  return
-  //}
-  
-  if (word === revWord){
-    return
+	// Abstract equality
+	//if (word == revWord){
+  	//  return
+  	//} 
+  	// Strict Equality
+  	if (word === revWord){
+    	return
+  	}
+  	return revWord
   }
-  return revWord
-  
-}
+
+//__________DRIVER Code__________
 var reversedWord = reverse("This is what we like to do for fun!!...?")
 console.log(reversedWord)
 
