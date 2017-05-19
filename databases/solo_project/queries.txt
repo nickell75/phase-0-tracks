@@ -1,0 +1,47 @@
+1. Display the information in one table (either table is fine).
+	sqlite> SELECT * FROM customer;
+	1|Tchotchke Shop|Bob Garcia
+	2|Cement and More|Wilma Pail
+	3|Bills Unlimited|Bill Billson
+
+2. Update an item that meets some condition (you can choose a condition that makes sense).
+	sqlite> UPDATE customer
+   ...> SET customer_name = "Donna Garcia"
+   ...> WHERE id = 1;
+	1|Tchotchke Shop|Donna Garcia
+	2|Cement and More|Wilma Pail
+	3|Bills Unlimited|Bill Billson
+	
+3. Display the information in both tables using one query.
+	SELECT * FROM customer LEFT JOIN orders;
+	1|Tchotchke Shop|Donna Garcia|1|10/21/2007|10/22/2007|25.25|2|1	
+	2|Cement and More|Wilma Pail|2|11/13/2017|11/12/2020|100.99|5|2
+	3|Bills Unlimited|Bill Billson|3|5/18/2011|6/4/2015|55.25|100|2
+
+4. Display a narrower selection of columns (fewer columns than all of them, in other words) from both tables using one query.
+	sqlite> select customer.customer_name, orders.price, orders.quantity 	FROM customer INNER JOIN orders;
+	Donna Garcia|25.25|2
+	Wilma Pail|100.99|5
+	Bill Billson|55.25|100
+
+5. Delete an item that meets some condition (you can choose a condition that makes sense).
+	DELETE FROM customer WHERE customer.id = 1;
+	sqlite> SELECT * FROM customer;
+	2|Cement and More|Wilma Pail
+	3|Bills Unlimited|Bill Billson
+
+What are they?
+ 	Left Join, Inner Join/Cross Join, Self Join
+Can you apply different conditions to a join to change what's displayed? 
+	Yes, example: WHERE clause, 
+Can you bookmark any good diagrams that will help you tell different joins apart in the future?
+	http://www.sqlitetutorial.net/sqlite-self-join/
+
+Try a few different joins in your database, and record the commands and the output in queries.txt.
+ 	SELECT customer_name, order_date, ship_date FROM customer CROSS JOIN 	orders;
+	Wilma Pail|10/21/2007|10/22/2007
+	Wilma Pail|11/13/2017|11/12/2020
+	Wilma Pail|5/18/2011|6/4/2015
+	Bill Billson|10/21/2007|10/22/2007
+	Bill Billson|11/13/2017|11/12/2020
+	Bill Billson|5/18/2011|6/4/2015
