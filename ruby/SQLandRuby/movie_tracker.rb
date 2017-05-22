@@ -4,6 +4,7 @@
 		store all movies user has seen
 		all user to add more movies to list of current movies
 		allow rating of movies scale of 1 - 10
+		allow rating update/change
 		allow comments of movies - limited amount of space
 		show list of top five favorite/recommended movies
 		show list of top five worst movies
@@ -34,29 +35,29 @@ SQL
 #____Auto Populate table
 	db.execute("INSERT INTO movies(title, rating, comments) VALUES
 		('Terminator', 9, 'Oldy, but a goody'), 
-		('Ghost', 7, 'N/A'), 
+		('Ghost', 1, 'N/A'), 
 		('The Blob', 1, 'A little before my time'), 
 		('Cheers', 10, 'Not a movie, but its on Hulu'), 
 		('Iron Man', 8, 'N/A'), 
 		('Hulk', 1, 'Eric Bana isnt a superhero'), 
-		('Thor', 10, 'N/A'), 
-		('Ant Man', 8, 'Not bad for a comedian'), 
+		('Thor', 1, 'N/A'), 
+		('Ant Man', 1, 'Not bad for a comedian'), 
 		('Logan', 1, 'Spoiler Alert'), 
-		('Batman', 8, 'N/A')")
+		('Batman', 1, 'N/A')")
 
 #____Add movies to the table	
 	def add_movie(db, title, rating, comments)
 		db.execute("INSERT INTO movies(title, rating, comments) VALUES(?, ?, ?)", [title, rating, comments])	
 	end
 #____Update movie rating
-	def update_movie
-		puts "Which Movie Rating would you like to change?"
+	def update_movie(db)		
 		puts "  - - Title - - Rating - - Comments - - "
-		movie = db.execute("SELECT * FROM movies WHERE rating = 10")
+		movie = db.execute("SELECT * FROM movies")
 		movie.each do |mov|
 			printf " * %-13s| %-4s|  %-5s\n", "#{mov['title']}", "#{mov['rating']}", "#{mov['comments']}"
 		end		
 		puts"-"*60
+		puts "Which Movie Rating would you like to change?"
 			movie_update = gets.chomp
 		puts "What would you like to change the rating to?"
 			update = gets.chomp.to_i
@@ -66,7 +67,7 @@ SQL
 	def top_five(db)
 	 	puts "\t -- Top Five -- "
 	 	puts "  - - Title - - Rating - - Comments - - "
-		movie = db.execute("SELECT * FROM movies WHERE rating = 10 LIMIT 5")
+		movie = db.execute("SELECT * FROM movies WHERE rating = 10 ORDER BY title ASC LIMIT 5")
 		movie.each do |mov|
 			printf " * %-13s| %-4s|  %-5s\n", "#{mov['title']}", "#{mov['rating']}", "#{mov['comments']}"
 		end
@@ -76,7 +77,7 @@ SQL
 	def bottom_five(db)
 		puts "\t -- Worst Five -- "
 	 	puts "  - - Title - - Rating - - Comments - - "
-		movie = db.execute("SELECT * FROM movies WHERE rating = 1 LIMIT 5")
+		movie = db.execute("SELECT * FROM movies WHERE rating = 1 ORDER BY title ASC LIMIT 5")
 		movie.each do |mov|
 			printf " * %-13s| %-4s|  %-5s\n", "#{mov['title']}", "#{mov['rating']}", "#{mov['comments']}"
 		end
