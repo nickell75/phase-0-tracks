@@ -11,7 +11,7 @@
 =end
 
 #require 'movie.db'
-
+#require 'faker'
 require 'sqlite3'
 
 db = SQLite3::Database.new("movies.db")
