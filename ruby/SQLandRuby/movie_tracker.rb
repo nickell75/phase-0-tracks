@@ -12,6 +12,8 @@
 
 #require 'movie.db'
 #require 'faker'
+
+###________Database_____________________________________________
 require 'sqlite3'
 
 db = SQLite3::Database.new("movies.db")
@@ -25,11 +27,63 @@ create_table_cmd = <<-SQL
 		comments VARCHAR(255)
 	)
 SQL
+##_____________________Business Logic____________________
+
+
 db.execute(create_table_cmd)
-#db.execute("INSERT INTO movies (title, rating, comments) VALUES('Title', 'Rating', 'Comments')")
 def add_movie(db, title, rating, comments)
-	db.execute("INSERT INTO movies(title, rating, comments) VALUES(?, ?, ?)", [title, rating, comments])
+	db.execute("INSERT INTO movies(title, rating, comments) VALUES(?, ?, ?)", [title, rating, comments])	
 end
+
+def update_movie
+#UPDATE users
+#SET  (field1, field2, field3)
+#   = ('value1', 'value2', 'value3') 
+#WHERE some_condition ;
+end
+
+def top_five(db)
+ #db.execute("SELECT * FROM movies WHERE rating = 10")
+ puts "\t -- Top Five -- "
+ puts "  --Title--Rating--Comments--"
+	movie = db.execute("SELECT * FROM movies WHERE rating = 10")
+	movie.each do |mov|
+		puts "  -  #{mov['title']}  -  #{mov['rating']}  -  #{mov['comments']}"
+	end
+end
+
+def bottom_five(db)
+	puts "\t -- Worst Five -- "
+ 	puts "  --Title--Rating--Comments--"
+	movie = db.execute("SELECT * FROM movies WHERE rating = 1")
+	movie.each do |mov|
+		puts "  -  #{mov['title']}  -  #{mov['rating']}  -  #{mov['comments']}"
+	end
+end
+
+def random_movie(db)
+	puts "Random Movie Generator"
+	random = db.execute("SELECT title, rating, comments FROM movies ORDER BY RANDOM() LIMIT 1")
+	random.each do |mov|
+		puts "#{mov['title']} -  #{mov['rating']}  -  #{mov['comments']}"
+	end
+end
+
+def sort_list(db)
+	#db.execute("SELECT * FROM movies ORDER BY rating ASC")
+end
+
+def print_table(db, title, rating, comments)
+	puts "  --Title--Rating--Comments--"
+	db.execute("SELECT printf('%s-%.2d-%.4d', title, rating, comments) FROM movies ORDER By rating ASC")
+
+	#movie = db.execute("SELECT * FROM movies ORDER BY rating ASC")
+	#movie.each do |mov|
+	#	puts "  -  #{mov['title']}  \t-  #{mov['rating']}  -  #{mov['comments']}"
+	#end
+end
+
+###____________________Driver code_________________________
 
 		puts "What movie would you like to add?"
 			title = gets.chomp
@@ -37,8 +91,37 @@ end
 			rating = gets.chomp.to_i
 		puts "Would you like to add a review?(Enter N/A if no)"
 			comments = gets.chomp
+add_movie(db, title, rating, comments)
+sort_list(db)# Not Working 
+#top_five(db) - Works fine!!
+#bottom_five(db) - works fine!
+print_table(db, title, rating, comments)
+random_movie(db)
 
-movie = db.execute("SELECT * FROM movies")
-movie.each do |mov|
-	puts "#{title} - #{rating} - #{comments}"
-end
+=begin
+print "What would you like to do: "
+	puts "1. Add a movie?"
+	puts "2. Update a Comment or Rating?"
+	puts "3. Checkout Top Five?"
+	puts "4. Checkout Worst Five?"
+	puts "5. Find a movie to watch?"
+	puts ". Or, Just checkout you list of movies?"
+	puts "Please Enter a number from above - "
+		input = gets.chomp.to_i
+		if input = 1
+			add_movie
+		elsif input = 2
+			update_movie
+		elsif input = 3
+		
+		elsif input = 4
+		
+		elsif input = 5
+		
+		elsif input = 6
+		
+		else
+			puts"Have A Nice Day!"
+		end
+	add_movie
+=end
