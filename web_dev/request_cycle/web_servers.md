@@ -1,0 +1,8 @@
+What are some of the key design philosophies of the Linux operating system?
+"An operating system, by its nature, embodies the philosophy of its creators... The creators of the Unix operating system started with a radical concept: they assumed that the user of their operating system would be computer literate from the start. The entire Unix philosophy revolves around the idea that the user knows what he or she is doing." - Linux and the Unix Philosophy, by Mike Gancarz 
+
+In your own words, what is a VPS (virtual private server)? What, according to your research, are the advantages of using a VPS?
+A VPS, like most virtual hardware, is a server provided by an internet hosting service that allows you to run your own server and have access to it in order to run any OS software you would like.  A VPS is a physical system that is partitoned to allow multiple servers to be ran rather than having a single physical system that would only run one server client.  One of the biggest advantages of using a VPS is cost which is relativly cheap (check out GoDaddy)and in some cases is provided free as an extension for web hosting services.  
+
+Optional bonus question: Why is it considered a bad idea to run programs as the root user on a Linux system?
+Logging in with a user account restricts access to the system and prevents progams from writing to the rest of the system allowing access to the home folder only, running programs as the root user could allow a program to gain access and read, write and replace files and system commands.

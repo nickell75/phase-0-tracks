@@ -1,3 +1,4 @@
+#_____Release 0
 What are some common HTTP status codes?
 
 403 Forbidden - the server understood the request, but is refusing to fulfill it. 
@@ -13,3 +14,4 @@ GET is used to retrieve data from a specified resource(retrieve data), POST is u
 
 Optional bonus question: What is a cookie (the technical kind, not the delicious kind)? How does it relate to HTTP requests?
 A cookie is a small piece of data sent from a website used to remember stateful infonad record browser activigy. 
+
