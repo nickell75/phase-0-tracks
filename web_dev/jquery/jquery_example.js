@@ -11,8 +11,10 @@ $(document).ready(function(){
   	});
 });
 function makeNewPosition(){    
-    var nh = Math.floor(Math.random() * 500);
-    var nw = Math.floor(Math.random() * 1000);    
+	var h = $(window).height() - 50;
+    var w = $(window).width() - 50;
+    var nh = Math.floor(Math.random() * h);
+    var nw = Math.floor(Math.random() * w);    
     return [nh,nw];        
 }
 function animateDiv(element){
