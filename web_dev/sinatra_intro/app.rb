@@ -63,23 +63,23 @@ get '/great_job' do
 end
 
 get '/:num_1/:num_2' do
-	num1 = params[:num_1]
-	num2 = params[:num_2]
-	answer = 0
-	def add_two(num1, num2)
- 		answer = num1 + num2
- 		answer.to_s	
- 	end
-  	add_two(num1, num2)
-  	"#{params[:num_1]} plus #{params[:num_2]} equals #{answer}"
+	sum = params[:num_1].to_i + params[:num_2].to_i
+	"#{params[:num_1]} + #{params[:num_2]} = #{sum}"
+
 end
 
 #_____________Release 1__________________________
 =begin
 Is Sinatra the only web app library in Ruby? What are some others?
+I found a few others libraries such as Rack which provides a minimal, modualar and adaptable 
+interface for web apps, also found Pandrino which provides a full stack agnostic framework on 
+top of Sinatra.  Cramp is a framework for developing asynchronous web applications, Cuba a microframework 
+for web applications, and Merb. Pocket rocket web framework (?not sure what a pocket rocket web framework is?)
 
 Are SQLite and the sqlite3 gem your only options for using a database with Sinatra? What are some others?
+No, there are quite a few otehrs: ActiveRecord, Datamapper and Mongo
 
 What is meant by the term web stack?
-
+A web stack is all the software required for web development such as an OS(linux), a programming language(.php),
+a database(MySQL) and a web server(Apache)
 =end
