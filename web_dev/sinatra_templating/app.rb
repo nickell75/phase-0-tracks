@@ -25,3 +25,11 @@ post '/students' do
 end
 
 # add static resources
+
+get '/students/login' do
+  erb :login
+end
+
+post '/students/login' do
+	db.execute("SELECT * FROM students WHERE name = ?", [pramas[name]] )
+end
